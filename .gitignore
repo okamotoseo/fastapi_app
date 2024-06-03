@@ -1,0 +1,28 @@
+# Python
+*.pyc
+__pycache__/
+
+# Environment
+venv/
+.env
+
+# Logs
+*.log
+
+# Data
+data/
+
+# Docker
+*.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Eclipse PyDev
+.project
+.pydevproject
+.metadata/
+
