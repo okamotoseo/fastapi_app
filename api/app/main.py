@@ -4,6 +4,9 @@ import os
 # Adicione o diretório raiz do projeto ao sys.path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../')
 
+# Adicione o diretório 'app' ao sys.path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/')
+
 from fastapi import FastAPI
 from app.routes.previsao_demanda.endpoints import router as previsao_demanda_router
 from app.routes.otimizacao_estoque.endpoints import router as otimizacao_estoque_router
@@ -14,8 +17,13 @@ from app.routes.segmentacao_clientes.endpoints import router as segmentacao_clie
 from app.routes.recomendacoes_produtos.endpoints import router as recomendacoes_produtos_router
 from app.routes.deteccao_fraudes.endpoints import router as deteccao_fraudes_router
 from app.routes.personalizacao_marketing.endpoints import router as personalizacao_marketing_router
+from app.routes.dialogflow_webhook.endpoints import router as dialogflow_webhook_router
+from app.middleware import CustomMiddleware  # Importar o middleware
 
 app = FastAPI()
+
+# Adicionar o middleware ao aplicativo
+app.add_middleware(CustomMiddleware)
 
 app.include_router(previsao_demanda_router, prefix="/previsao_demanda", tags=["Previsão de Demanda"])
 app.include_router(otimizacao_estoque_router, prefix="/otimizacao_estoque", tags=["Otimização de Estoque"])
@@ -26,6 +34,7 @@ app.include_router(segmentacao_clientes_router, prefix="/segmentacao_clientes", 
 app.include_router(recomendacoes_produtos_router, prefix="/recomendacoes_produtos", tags=["Recomendações de Produtos"])
 app.include_router(deteccao_fraudes_router, prefix="/deteccao_fraudes", tags=["Detecção de Fraudes"])
 app.include_router(personalizacao_marketing_router, prefix="/personalizacao_marketing", tags=["Personalização de Marketing"])
+app.include_router(dialogflow_webhook_router, prefix="/dialogflow", tags=["Dialogflow"])
 
 @app.get("/")
 async def root():

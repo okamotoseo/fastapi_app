@@ -26,3 +26,4 @@ data/
 .pydevproject
 .metadata/
 
+dialogflow-credentials.json
