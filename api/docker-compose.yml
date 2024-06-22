@@ -1,10 +1,22 @@
-version: "3.8"
+version: '3.3'
 
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: "1001:1002"  # Use o UID e GID do usuário willians_seo
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
     ports:
-      - "8000:8000"
-    environment:
-      - DATABASE_URL=sqlite:///./test.db
+      - "8001:8000"  # Porta alterada para evitar conflitos
+    volumes:
+      - /var/www/fastapi_app/api/app:/app
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "8443:443"  # Porta alterada para evitar conflitos
+    depends_on:
+      - web
 
