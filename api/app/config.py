@@ -1,11 +1,15 @@
+from dotenv import load_dotenv
 import os
 
+# Carrega variáveis de ambiente do arquivo .env
+load_dotenv()
+
 class Config:
-    DATABASE_URL = os.getenv('DATABASE_URL', "sqlite:///./test.db")
-    GOOGLE_CLOUD_PROJECT = os.getenv('GOOGLE_CLOUD_PROJECT', "cool-benefit-267222")
-    GOOGLE_CLOUD_LOCATION = os.getenv('GOOGLE_CLOUD_LOCATION', "us-central1")
-    GOOGLE_APPLICATION_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS', "/home/willians_seo/.config/gcloud/application_default_credentials.json")
-    VERTEX_AI_CREDENTIALS = os.getenv('VERTEX_AI_CREDENTIALS', "/home/willians_seo/.config/gcloud/application_default_credentials.json")
+    DATABASE_URL = os.getenv('DATABASE_URL')
+    GOOGLE_CLOUD_PROJECT = os.getenv('GOOGLE_CLOUD_PROJECT')
+    GOOGLE_CLOUD_LOCATION = os.getenv('GOOGLE_CLOUD_LOCATION')
+    GOOGLE_APPLICATION_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+    VERTEX_AI_CREDENTIALS = os.getenv('VERTEX_AI_CREDENTIALS')
 
 config = Config()
 
