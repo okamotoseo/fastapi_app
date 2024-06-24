@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Request, HTTPException
-from google.cloud import dialogflow_v2 as dialogflow
+from google.cloud import dialogflow
+
 import os
 import logging
 import time
